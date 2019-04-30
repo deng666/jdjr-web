@@ -9,7 +9,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: '京东金融'
+      msg: 'KAKAKKA'
     }
   }
 }
