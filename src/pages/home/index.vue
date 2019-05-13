@@ -191,7 +191,7 @@ export default {
   .hi-banner {
     width: 100%;
     height: 3.2rem;
-    margin-bottom: .4rem;
+    margin-bottom: .2rem;
     background-color: pink;
     .hi-img {
       width: 100%;

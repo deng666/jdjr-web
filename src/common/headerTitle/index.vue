@@ -28,7 +28,11 @@ export default {
   width: 100%;
   line-height: .88rem;
   background-color: #fff;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   .iconjiantou-copy {
     width: .5rem;
     height: 100%;

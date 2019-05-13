@@ -33,6 +33,6 @@ export default {
 
 <style>
 .swipe-section {
-  padding-left: .4rem;
+  padding: .2rem 0 .3rem .4rem;
 }
 </style>
