@@ -1,0 +1,108 @@
+@charset "UTF-8";
+
+// 实现继承
+@mixin flex($direction:column,$inline:block) {
+  display: if($inline==block,flex,inline-flex);
+  flex-direction: $direction;
+  flex-wrap: wrap;
+}
+
+body, html {
+  line-height: 1;
+  font-family: "PingHei", "STHeiti", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: #F5F5F5;
+  color: #252525;
+  margin: 0;
+  padding: 0;
+  font-size: .28rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  /*
+  box-sizing: border-box;
+  */
+}
+
+li, ol {
+  list-style: none;
+}
+
+.column {
+  flex-direction: column
+}
+
+.flex-item {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flex-justify {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.flex-grow {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  flex: 1;
+}
+
+img {
+  content: normal !important;
+}
+.input-item {
+  padding: 0 40px;
+}
+.button-primary {
+  display: block;
+  height: 1rem;
+  text-align: center;
+  border-radius: 1rem;
+  line-height: 1rem;
+  font-size: .34rem;
+  background-color: #0a81fb;
+  color: #fff;
+  width: 100%;
+  margin: .5rem auto 0;
+  letter-spacing: .05rem;
+}
+
+.icon-arrow-left{
+  font-size: .4rem;
+  position: absolute;
+  left: .3rem;
+  top: .65rem;
+}
+
+.text-left{
+  text-align: left
+}
+.text-right{
+  text-align: right
+}
+.text-center{
+  text-align: center
+}
+
+// 清除浮动
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}

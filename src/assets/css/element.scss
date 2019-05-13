@@ -1,0 +1,38 @@
+@import "./layout.scss";
+
+// 定义按钮
+@mixin btn($size:.14rem,$color:#fff,$bgcolor:#f04752,$padding:.05rem,$radius:.05rem) {
+  padding: $padding;
+  background-color: $bgcolor;
+  border-radius: $radius;
+  border: 1px solid $bgcolor;
+  outline: none;
+  font-size: $size;
+  color: $color;
+  text-align: center;
+  line-height: 1;
+  display: inline-block;
+}
+
+// 列表纵向
+@mixin list($direction:column) {
+  @include flex($direction)
+}
+
+@mixin panel($bgclor:#fff,$padding:0,$margin:.2rem 0,$height:1.12rem,$textPadding:0 .32rem,$color:#333,$fontSize:.32rem) {
+  background-color: $bgclor;
+  padding: $padding;
+  margin: $margin;
+  >h4 {
+    height: $height;
+    line-height: $height;
+    padding: $textPadding;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    color: $color;
+    font-size: $fontSize;
+    position: relative;
+  }
+}
