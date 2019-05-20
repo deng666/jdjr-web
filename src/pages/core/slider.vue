@@ -1,38 +1,53 @@
 <template>
   <div>
-    <section class="swipe-section">
-      <swiper :options="swiperOptions">
-        <swiper-slide v-for="(item, key) in bannerList" :key="key">
-          <img :src="item.fileUrl" alt="" width="100%" class="swipe-img">
+    <section :class="cname">
+      <swiper :options="options" :not-next-tick="options.notNextTick">
+        <swiper-slide v-for="(item, key) in items" :key="key">
+          <img :src="item.img" alt="" class="swipe-img">
         </swiper-slide>
-      </swiper> 
+        <div class="swiper-pagination" slot="pagination" v-if="options.pagination"></div>
+      </swiper>
     </section>
-  </div> 
+  </div>
 </template>
 
 <script>
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default {
   props: {
-    bannerList: null
+    items: null,
+    cname: {
+      type: String,
+      default: ''
+    },
+    options: {
+      type: Object,
+      default () {
+        return {
+          autoplay: true,  //自动滚动
+          loop: true,  //无序
+          pagination: {
+            el: ".swiper-pagination"  // 小点
+          },
+          notNextTick: false
+        }
+      }
+    }
   },
   data () {
     return {
-      swiperOptions: {
-        slidesPerView: 2.7,
-        spaceBetween: 15
-      }
     }
   },
   components: {
     swiper,
     swiperSlide
-  },
+  }
 }
 </script>
 
 <style>
+/* @import "~swiper/dist/css/swiper.css" */
 .swipe-section {
-  padding: .2rem 0 .3rem .4rem;
+  padding: .4rem 0 .6rem .8rem;
 }
 </style>

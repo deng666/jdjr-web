@@ -1,13 +1,10 @@
 <template>
   <div>
-    <header-title headerTitle="首页"></header-title>
+    <!-- <header-title headerTitle="首页"></header-title> -->
+    <heador/>
     <div class="content">
       <div class="hi-banner">
-        <swiper :options="swiperOption">
-          <swiper-slide v-for="item in swiperSlides" :key="item.img">
-            <img class="hi-img" :src="item.img" alt=""></swiper-slide>
-          <div class="swiper-pagination" slot="pagination"></div>
-        </swiper>
+        <slider :cname="slider" :items="swiperSlides"/>
       </div>
       <div class="hi-options">
         <div class="hi-options-items" v-for="item in productDesign" :key="item.img">
@@ -17,8 +14,13 @@
           </div>
         </div>
       </div>
+      <div class="hi-jisu">
+        <panel title="极速借贷">
+          <img src="http://img13.360buyimg.com/cms/jfs/t1/32582/31/15415/68558/5cc19becE9dc64654/a4093ababa3f43bf.jpg" alt="" width="100%">
+        </panel>
+      </div>
       <div class="hi-card">
-        <panel :title="finance">
+        <panel title="理财产品">
           <div class="hi-finance clearfix">
             <div class="hi-finance-line"></div>
             <div class="hi-finance-option" v-for="item in financeList" :key="item.id">
@@ -33,18 +35,18 @@
         </panel>
       </div>
       <div class="hi-task">
-        <panel :title="task" :isShowCheck="taskText" :rightText="financerightText">
-          <slider :bannerList="bannerList" :swiperOptions="swiperOptions"></slider>
+        <panel title="赏金任务" :isShowCheck="taskText" rightText="查看更多任务">
+          <slider :options="options" :items="itemsList" cname="product-slider"></slider>
         </panel>
       </div>
       <div class="hi-insurance">
-        <panel :title="insurance">
-          <slider :bannerList="insuranceList" :swiperOptions="swiperOptions"></slider>
+        <panel title="保险保障">
+          <slider :options="options" :items="insuranceList" cname="product-slider"></slider>
         </panel>
       </div>
       <div class="hi-congregation">
-        <panel :title="congregation" :isShowCheck="taskText" :rightText="congregationText">
-          <slider :bannerList="congregationList" :swiperOptions="swiperOptions"></slider>
+        <panel title="众筹新品" :isShowCheck="taskText" rightText="更多尖货">
+          <slider :options="options2" :items="congregationList" cname="product-slider"></slider>
         </panel>
       </div>
       <div class="hi-copyright-detail">
@@ -59,29 +61,33 @@
 </template>
 
 <script>
-import HeaderTitle from '@/common/headerTitle/index'
+// import HeaderTitle from '@/common/headerTitle/index'
 import Panel from '../core/panel.vue'
 import Slider from '../core/slider.vue'
 import FooterBar from '@/common/footerBar/index'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import Heador from '@/common/header'
 export default {
+  name: 'index',
   data () {
     return {
-      swiperOption: {
-        pagination: {
-          el: '.swiper-pagination'
-        }
-      },
-      finance: '理财产品',
-      task: '赏金任务',
+      slider: 'slider-banner',
       taskText: true,
-      financerightText: '查看更多任务',
-      insurance: '保险保障',
-      congregation: '众筹新品',
-      congregationText: '更多尖货',
-      swiperOptions: {
-        slidesPerView: 2.6,
-        spaceBetween: 15
+      options: {
+        // pagination: {  // 小点点
+        //   el: '.swiper-pagination',
+        //   clickable: true
+        // },
+        paginationClickable: true,
+        slidesPerView: 2.7,
+        spaceBetween: 35,
+        freeMode: true
+      },
+      options2: {
+        paginationClickable: true,
+        slidesPerView: 2,
+        spaceBetween: 35,
+        freeMode: true
       },
       financeList: [{
         id: 1,
@@ -108,32 +114,32 @@ export default {
         rate: 4.50,
         text: '7日年化收益率'
       }],
-      bannerList: [{
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t26893/316/1416172900/5740/58f20b1e/5bc82e3aN7aa90a89.png?width=210&height=260'
+      itemsList: [{
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t26893/316/1416172900/5740/58f20b1e/5bc82e3aN7aa90a89.png?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t26767/72/1365822552/8516/2e071d95/5bc82e6eN0be93809.png?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t26767/72/1365822552/8516/2e071d95/5bc82e6eN0be93809.png?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t27040/190/1395454031/8316/d3d74de2/5bc82eb2N34a7625d.png?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t27040/190/1395454031/8316/d3d74de2/5bc82eb2N34a7625d.png?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t27040/190/1395454031/8316/d3d74de2/5bc82eb2N34a7625d.png?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t27040/190/1395454031/8316/d3d74de2/5bc82eb2N34a7625d.png?width=210&height=260'
       }],
       insuranceList: [{
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19965/4/1946/28370/5c18958aE9e8a930d/9810bed7979e6bd5.jpg?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19965/4/1946/28370/5c18958aE9e8a930d/9810bed7979e6bd5.jpg?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/27283/39/2034/26756/5c1895b5Ecbfdf7ed/6a0755f1f40e2eb9.jpg?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/27283/39/2034/26756/5c1895b5Ecbfdf7ed/6a0755f1f40e2eb9.jpg?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/27014/35/2022/24897/5c1895d9Ef095679a/c0918d244bbfb2e5.jpg?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/27014/35/2022/24897/5c1895d9Ef095679a/c0918d244bbfb2e5.jpg?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19150/30/2037/31576/5c1895f2Eb431149e/7a71e063250f8b0d.jpg?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19150/30/2037/31576/5c1895f2Eb431149e/7a71e063250f8b0d.jpg?width=210&height=260'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/9279/3/9618/27165/5c189693E5d54e2cb/c263629839992767.jpg?width=210&height=260'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/9279/3/9618/27165/5c189693E5d54e2cb/c263629839992767.jpg?width=210&height=260'
       }],
       congregationList: [{
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/30149/40/8970/20149/5ca2e84dE7641a4dc/342b926b8582a140.jpg?width=335&height=421'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/30149/40/8970/20149/5ca2e84dE7641a4dc/342b926b8582a140.jpg?width=335&height=421'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19514/33/13824/16597/5ca2e84eE4b9cc39a/23b319b8846b585c.png?width=335&height=421'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19514/33/13824/16597/5ca2e84eE4b9cc39a/23b319b8846b585c.png?width=335&height=421'
       }, {
-        fileUrl: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/12202/17/13916/19329/5ca2e84fE6bde713f/ff4f3231eb4c7312.jpg?width=335&height=421'
+        img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/12202/17/13916/19329/5ca2e84fE6bde713f/ff4f3231eb4c7312.jpg?width=335&height=421'
       }],
       swiperSlides: [{
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/19037/8/10380/37518/5c862ba2Ec8e629f7/6c4f8c721cf210d8.jpg?width=750&height=320'
@@ -168,31 +174,30 @@ export default {
     }
   },
   components: {
-    HeaderTitle,
+    // HeaderTitle,
     Panel,
     Slider,
     FooterBar,
     swiper,
-    swiperSlide
+    swiperSlide,
+    Heador
   },
   methods: {
     loadFn (e) {
       e.target.height = e.target.width * 210 / 260
     }
-  },
-  created () {
-    
   }
 }
 </script>
 
 <style lang="scss" scoped>
+// @import "../../assets/css/element.scss"
 .content {
   .hi-banner {
     width: 100%;
-    height: 3.2rem;
-    margin-bottom: .2rem;
-    background-color: pink;
+    height: 6.4rem;
+    margin-bottom: .4rem;
+    background-color: #fff;
     .hi-img {
       width: 100%;
       height: auto;
@@ -204,12 +209,12 @@ export default {
         width: 25%;
         float: left;
         color: #333;
-        font-size: .3rem;
+        font-size: .6rem;
         text-align: center;
-        padding: .4rem 0;
+        padding: .8rem 0;
         img {
-          width: .9rem;
-          height: .9rem;
+          width: 1.8rem;
+          height: 1.8rem;
         }
       }
     }
@@ -230,24 +235,24 @@ export default {
       width: 50%;
       float: left;
       position: relative;
-      padding: .4rem 0 .4rem .4rem;
+      padding: .8rem 0 .8rem .8rem;
       box-sizing: border-box;
       .hi-finance-title {
         color: #333;
-        font-size: .26rem;
+        font-size: .52rem;
         font-weight: bold;
         .hi-finance-hint {
           color: #fa5a4b;
-          font-size: .22rem;
+          font-size: .44rem;
           border: 1px solid #fa5a4b;
           font-weight: normal;
         }
       }
       .hi-finance-rate {
         color: #fa5a4b;
-        font-size: .45rem;
+        font-size: .9rem;
         font-weight: bold;
-        margin: .2rem 0;
+        margin: .4rem 0;
       }
       .hi-finance-text {
         color: #999;
@@ -267,12 +272,12 @@ export default {
   }
   .hi-copyright-detail {
     text-align: center;
-    font-size: .3rem;
+    font-size: .6rem;
     color: #666;
     border-top: 1px solid #ccc;
     p {
-      height: .8rem;
-      line-height: .8rem;
+      height: 1.6rem;
+      line-height: 1.6rem;
       border-bottom: 1px solid #ccc;
     }
   }

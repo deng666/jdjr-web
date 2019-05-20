@@ -3,11 +3,13 @@
     <header class="heaser-title">
       <i class="iconfont iconjiantou-copy"></i>
       <h4 class="heaser-text">{{headerTitle}}</h4>
-      <i class="iconfont icongengduo"></i>
+      <i class="iconfont icongengduo" @click="showList"></i>
+      <card :show="show"></card>
     </header>
   </div>
 </template>
 <script>
+import Card from '@/pages/core/card.vue'
 export default {
   props: {
     headerTitle: {
@@ -17,6 +19,15 @@ export default {
   },
   data () {
     return {
+      show: false
+    }
+  },
+  components: {
+    Card
+  },
+  methods: {
+    showList() {
+      this.show = !this.show
     }
   }
 }

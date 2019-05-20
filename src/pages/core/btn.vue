@@ -1,28 +1,29 @@
 <template>
   <div :class="[btnClass, cname]">
     <!-- 插槽 -->
-    <solt/>
+    <slot/>
   </div> 
 </template>
 
 <script>
 export default {
+  // 属性传递
   props: {
     cname: {
-      type: "String",
-      default: ""
+      type: String, // 类型
+      default: ""  // 默认值
     } 
   },
   data () {
     return {
-      btnClass: "btn"
+      btnClass: 'btn'
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  @import "../../css/element.scss"
+  @import "../../assets/css/element.scss";
   .btn {
     @include btn
   }

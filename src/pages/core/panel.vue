@@ -16,7 +16,7 @@ export default {
   props: {
     cname: {
       type: String,
-      default: "",
+      default: ""
     },
     title: {
       type: String,
@@ -33,25 +33,26 @@ export default {
   },
   data () {
     return {
-      panelClass: "panel"
+      panelClass: 'panel'
     }
   }
 }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
   @import "../../assets/css/element.scss";
   .panel {
     @include panel;
+    padding-bottom: .8rem;
   }
   .right-text {
     position: absolute;
-    right: .2rem;
+    right: .4rem;
     color: #999;
-    font-size: .26rem;
+    font-size: .52rem;
     font-weight: normal;
     .iconfont {
-      font-size: .24rem;
+      font-size: .48rem;
     }
   }
 </style>
