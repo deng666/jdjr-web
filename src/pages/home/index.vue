@@ -9,8 +9,10 @@
       <div class="hi-options">
         <div class="hi-options-items" v-for="item in productDesign" :key="item.img">
           <div class="hi-option-list">
-            <img :src="item.img" alt="">
-            <div>{{item.title}}</div>
+            <router-link :to="{ name: item.href }">
+              <img :src="item.img" alt="">
+              <div>{{item.title}}</div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -148,28 +150,36 @@ export default {
       }],
       productDesign: [{
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t3991/64/2521945388/12110/93c0139/58d1e462Ncf294123.png?width=132&height=132',
-        title: '优惠券'
+        title: '优惠券',
+        href: 'download'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t5590/252/875247023/17343/946aa72c/59224650N0f7ffc92.png?width=132&height=132',
-        title: '领福利'
+        title: '领福利',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t4393/329/2180608902/13217/c88c0cec/58ec9dcdN1534e2d7.png?width=132&height=132',
-        title: '抢钢镚'
+        title: '抢钢镚',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t5488/298/1036263348/12073/b4f4de97/590ac8e8Ne9def22e.png?width=135&height=135',
-        title: '白条提额'
+        title: '白条提额',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/520/34/950/3686/5b9239e3Eaaf5465c/8d8c35badacfc114.png?width=90&height=90',
-        title: '工资理财'
+        title: '工资理财',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/1216/39/659/4516/5b923b1cE5943d1c6/dabaf8b842f57eb9.png?width=90&height=90',
-        title: '众筹'
+        title: '众筹',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/36242/13/119/12214/5cb06492E0c73a66f/a284f91242e27af1.png?width=90&height=90',
-        title: '免费领京豆'
+        title: '免费领京豆',
+        href: 'home'
       }, {
         img: 'https://img12.360buyimg.com/jrpmobile/jfs/t1/23337/6/15445/8974/5cb064c2E0cadac1d/c533bfe4da578fe7.png?width=90&height=90',
-        title: '免息红包'
+        title: '免息红包',
+        href: 'home'
       }]
     }
   },
@@ -215,6 +225,9 @@ export default {
         img {
           width: 1.8rem;
           height: 1.8rem;
+        }
+        a {
+          text-decoration: none;
         }
       }
     }

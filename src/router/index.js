@@ -15,6 +15,13 @@ export default new Router({
     path: '/order',
     name: 'order',
     component: resolve => require(['@/pages/order'], resolve)
-  }
-  ]
+  }, {
+    path: '/ious',
+    name: 'ious',
+    component: resolve => require(['@/pages/ious'], resolve)
+  }, {
+    path: '/download',
+    name: 'download',
+    component: resolve => require(['@/pages/special/download'], resolve)
+  }]
 })
