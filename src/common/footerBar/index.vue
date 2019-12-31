@@ -1,10 +1,10 @@
 <template>
   <!-- 底部导航栏 -->
   <ul class="fi-bar">
-    <li class="tab" @click="goPage('home')">
-      <img src="./homelign.png" alt="" v-if="name === 'home'">
+    <li class="tab" @click="goPage('index')">
+      <img src="./homelign.png" alt="" v-if="name === 'index'">
       <img src="./home.png" alt="" v-else>
-      <p class="item-text" :class="name === 'home' ? 'active' : ''">首页</p>
+      <p class="item-text" :class="name === 'index' ? 'active' : ''">首页</p>
     </li>
     <li class="tab" @click="goPage('order')">
       <img src="./orderlign.png" alt="" v-if="name === 'order'">
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import {router} from '@/router'
 export default {
   created () {
     this.name = this.$route.name

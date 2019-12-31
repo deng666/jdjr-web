@@ -1,11 +1,8 @@
 <template>
-  <!-- <div> -->
-    <!-- <header-title headerTitle="订单"></header-title> -->
-    <div class="content">
-      订单
-      <footer-bar />
-    </div>
-  <!-- </div> -->
+  <div class="content">
+    我的
+    <footer-bar />
+  </div>
 </template>
 
 <script>

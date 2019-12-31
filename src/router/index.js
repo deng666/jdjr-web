@@ -6,6 +6,7 @@ Vue.use(Router)
 export default new Router({
   routes: [{
     path: '/', // 这个表示的是根目录，即一进入的页面
+    name: 'index',
     redirect: '/index' // 设置页面一进来就显示的页面，即重定向到goods组件，这里写的内容是对应组将的component的值
   }, {
     path: '/index',
@@ -23,5 +24,13 @@ export default new Router({
     path: '/download',
     name: 'download',
     component: resolve => require(['@/pages/special/download'], resolve)
+  }, {
+    path: '/car',
+    name: 'car',
+    component: resolve => require(['@/pages/car'], resolve)
+  }, {
+    path: '/my',
+    name: 'my',
+    component: resolve => require(['@/pages/my'], resolve)
   }]
 })
