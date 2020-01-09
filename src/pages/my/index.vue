@@ -16,6 +16,7 @@ export default {
   data () {
     return {
       option: {
+        color: ['#7daeff'],
         title: {
           text: '某地区蒸发量和降水量',
           subtext: '纯属虚构'
@@ -50,24 +51,26 @@ export default {
         yAxis: [
           {
             type: 'value',
-            name: '水量',
+            // name: '水量',
             min: 0,
             max: 900,
             interval: 300,
             axisLabel: {
-              formatter: '{value} ml'
+              formatter: '{value}'
             }
           }
         ],
         label: {
           show: true,
           position: 'top',
-          color: 'blue'
+          color: '#7daeff'
         },
         series: [
           {
             name: '蒸发量',
             type: 'bar',
+            barWidth : 30,//柱图宽度
+            barGap:'-50%',//柱图间距
             data: [687, 236, 3, 650, 800, 310, 260, 162.2, 698]
           }
         ]

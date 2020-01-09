@@ -3,6 +3,7 @@
     <header-title headerTitle="订单"></header-title>
     <div class="content">
       <div id="monthorder" style="width:100%;height:500px"></div>
+      <div id="leida" style="width:100%;height:500px"></div>
       <footer-bar />
     </div>
   </div>
@@ -11,23 +12,90 @@
 <script>
 import HeaderTitle from '@/common/headerTitle/index'
 import FooterBar from '@/common/footerBar/index'
-var echarts = require('echarts/lib/echarts')
 export default {
   name: 'order',
   data () {
     return {
-      monthlist: {
-        monthdata: [
-          '未付款的订单',
-          '待确认的订单',
-          '待发货的订单',
-          '已发货的订单',
-          '已完成的订单',
-          '取消的订单'
-        ],
-        time: '2018.01.01-2019.09.01',
-        precent: [30, 10, 12, 15, 30, 10],
-        total: 88
+      option: {
+        title: {
+          text: '某站点用户访问来源',
+          subtext: '纯属虚构',
+          left: 'center'
+        },
+        tooltip: {
+          trigger: 'item',
+          formatter: '{a} <br/>{b} : {c} ({d}%)'
+        },
+        legend: {
+          orient: 'vertical',
+          left: 'left',
+          data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+        },
+        series: [
+          {
+            name: '访问来源',
+            type: 'pie',
+            radius: '55%',
+            center: ['50%', '60%'],
+            data: [
+              {value: 335, name: '直接访问'},
+              {value: 310, name: '邮件营销'},
+              {value: 234, name: '联盟广告'},
+              {value: 135, name: '视频广告'},
+              {value: 1548, name: '搜索引擎'}
+            ],
+            emphasis: {
+              itemStyle: {
+                shadowBlur: 10,
+                shadowOffsetX: 0,
+                shadowColor: 'rgba(0, 0, 0, 0.5)'
+              }
+            }
+          }
+        ]
+      },
+      options: {
+        title: {
+          text: '基础雷达图'
+        },
+        tooltip: {},
+        legend: {
+          data: ['预算分配（Allocated Budget）', '实际开销（Actual Spending）']
+        },
+        radar: {
+          // shape: 'circle',
+          name: {
+            textStyle: {
+              color: '#fff',
+              backgroundColor: '#999',
+              borderRadius: 3,
+              padding: [3, 5]
+            }
+          },
+          indicator: [
+            { name: '销售（sales）', max: 6500},
+            { name: '管理（Administration）', max: 16000},
+            { name: '信息技术（Information Techology）', max: 30000},
+            { name: '客服（Customer Support）', max: 38000},
+            { name: '研发（Development）', max: 52000},
+            { name: '市场（Marketing）', max: 25000}
+          ]
+        },
+        series: [{
+          name: '预算 vs 开销（Budget vs spending）',
+          type: 'radar',
+          // areaStyle: {normal: {}},
+          data: [
+            {
+              value: [4300, 10000, 28000, 35000, 50000, 19000],
+              name: '预算分配（Allocated Budget）'
+            },
+            {
+              value: [5000, 14000, 28000, 31000, 42000, 21000],
+              name: '实际开销（Actual Spending）'
+            }
+          ]
+        }]
       }
     }
   },
@@ -38,55 +106,21 @@ export default {
   created () {
     this.$nextTick(function () {
       this.montheahcrt()
+      this.init()
     })
   },
   methods: {
     montheahcrt () {
-      var that = this
-      var monthseries = that.monthseries()
-      var myechart = echarts.init(document.getElementById('monthorder'))
-      myechart.setOption({
-        title: { subtext: that.monthlist.time, x: 'center' },
-        tooltip: { trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)' },
-
-        legend: {
-          type: 'scroll',
-          orient: 'vertical',
-          right: 0,
-          top: 0,
-          bottom: 20,
-          data: monthseries.legendData,
-          selected: monthseries.selected
-        },
-        series: [
-          {
-            name: '',
-            type: 'pie',
-            radius: '50%',
-            center: ['60%', '50%'],
-            data: monthseries.seriesData
-          }
-        ]
-      })
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = this.$echarts.init(document.getElementById('monthorder'))
+      // 绘制图表
+      myChart.setOption(this.option)
     },
-    monthseries () {
-      var data = this.monthlist
-      var legendData = []
-      var seriesData = []
-      var selected = {}
-      for (var i = 0; i < data.monthdata.length; i++) {
-        seriesData.push({
-          name: data.monthdata[i],
-          value: data.precent[i]
-        })
-        legendData.push(data.monthdata[i])
-        selected[data.monthdata[i]] = true
-      }
-      return {
-        seriesData,
-        selected,
-        legendData
-      }
+    init () {
+      // 基于准备好的dom，初始化echarts实例
+      let myChart = this.$echarts.init(document.getElementById('leida'))
+      // 绘制图表
+      myChart.setOption(this.options)
     }
   }
 }
