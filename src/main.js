@@ -8,8 +8,10 @@ import 'swiper/dist/css/swiper.css'
 import '@/assets/css/layout.scss'
 import './assets/font/iconfont.css'
 import '@/assets/css/element.scss'
+import echarts from 'echarts'
 
 Vue.config.productionTip = false
+Vue.prototype.$echarts = echarts
 
 /* eslint-disable no-new */
 new Vue({

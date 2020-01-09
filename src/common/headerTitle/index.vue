@@ -26,7 +26,7 @@ export default {
     Card
   },
   methods: {
-    showList() {
+    showList () {
       this.show = !this.show
     }
   }
@@ -35,9 +35,9 @@ export default {
 
 <style lang="scss" scoped>
 .heaser-title {
-  height: .88rem;
+  height: 2rem;
   width: 100%;
-  line-height: .88rem;
+  line-height: 1.5;
   background-color: #fff;
   position: fixed;
   top: 0;
@@ -45,34 +45,31 @@ export default {
   right: 0;
   z-index: 100;
   .iconjiantou-copy {
-    width: .5rem;
-    height: 100%;
     position: absolute;
-    top: 50%;
-    left: .2rem;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
+    left: .1rem;
+    top:0.5rem;
+    font-size:.7rem;
+    padding: 0 .3rem;
+    color: #333;
   }
   .icongengduo {
-    width: .5rem;
-    height: 100%;
     position: absolute;
-    font-size: .4rem;
-    top: 50%;
+    font-size: .8rem;
+    top: 0.4rem;
     right: .2rem;
-    transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
+    padding: 0 .3rem;
   }
   .heaser-text {
-    margin: 0 .7rem;
-    font-size: .32rem;
-    line-height: .88rem;
+    line-height: 2rem;
     text-align: center;
-    color: #333;
-    overflow: hidden;
-    -webkit-text-overflow: ellipsis;
-    text-overflow: ellipsis;
+    font-size: 1rem;
+    font-weight: normal;
+    color:#333;
+    box-sizing: border-box;
+    padding: 0 .2rem;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 </style>
