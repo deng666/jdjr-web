@@ -32,5 +32,9 @@ export default new Router({
     path: '/my',
     name: 'my',
     component: resolve => require(['@/pages/my'], resolve)
+  }, {
+    path: '/bill',
+    name: 'bill',
+    component: resolve => require(['@/pages/bill'], resolve)
   }]
 })

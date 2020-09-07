@@ -9,95 +9,104 @@
 </template>
 
 <script>
-import HeaderTitle from '@/common/headerTitle/index'
-import FooterBar from '@/common/footerBar/index'
+import HeaderTitle from "@/common/headerTitle/index";
+import FooterBar from "@/common/footerBar/index";
 export default {
-  name: 'order',
-  data () {
+  name: "order",
+  data() {
     return {
       option: {
-        color: ['#7daeff'],
+        color: ["#7daeff"],
         title: {
-          text: '某地区蒸发量和降水量',
-          subtext: '纯属虚构'
+          text: "某地区蒸发量和降水量",
+          subtext: "纯属虚构",
         },
         tooltip: {
-          trigger: 'axis'
+          trigger: "axis",
         },
         legend: {
-          data: ['蒸发量']
+          data: ["蒸发量"],
         },
         toolbox: {
           show: true,
           feature: {
-            dataView: {show: true, readOnly: false},
-            magicType: {show: true, type: ['line', 'bar']},
-            restore: {show: true},
-            saveAsImage: {show: true}
-          }
+            dataView: { show: true, readOnly: false },
+            magicType: { show: true, type: ["line", "bar"] },
+            restore: { show: true },
+            saveAsImage: { show: true },
+          },
         },
         calculable: true,
         xAxis: [
           {
-            type: 'category',
-            color: 'red',
-            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月'],
+            type: "category",
+            color: "red",
+            data: [
+              "1月",
+              "2月",
+              "3月",
+              "4月",
+              "5月",
+              "6月",
+              "7月",
+              "8月",
+              "9月",
+            ],
             axisLabel: {
               interval: 0,
-              rotate: 45
-            }
-          }
+              rotate: 45,
+            },
+          },
         ],
         yAxis: [
           {
-            type: 'value',
+            type: "value",
             // name: '水量',
             min: 0,
             max: 900,
             interval: 300,
             axisLabel: {
-              formatter: '{value}'
-            }
-          }
+              formatter: "{value}",
+            },
+          },
         ],
         label: {
           show: true,
-          position: 'top',
-          color: '#7daeff'
+          position: "top",
+          color: "#7daeff",
         },
         series: [
           {
-            name: '蒸发量',
-            type: 'bar',
-            barWidth : 30,//柱图宽度
-            barGap:'-50%',//柱图间距
-            data: [687, 236, 3, 650, 800, 310, 260, 162.2, 698]
-          }
-        ]
-      }
-    }
+            name: "蒸发量",
+            type: "bar",
+            barWidth: 30, // 柱图宽度
+            barGap: "-50%", // 柱图间距
+            data: [687, 236, 3, 650, 800, 310, 260, 162.2, 698],
+          },
+        ],
+      },
+    };
   },
   components: {
     HeaderTitle,
-    FooterBar
+    FooterBar,
   },
-  mounted () {
-    this.drawLine()
+  mounted() {
+    this.drawLine();
   },
   methods: {
     // tranNumber (num) {
 
     // },
-    drawLine () {
+    drawLine() {
       // 基于准备好的dom，初始化echarts实例
-      let myChart = this.$echarts.init(document.getElementById('myChart'))
+      let myChart = this.$echarts.init(document.getElementById("myChart"));
       // 绘制图表
-      myChart.setOption(this.option)
-    }
-  }
-}
+      myChart.setOption(this.option);
+    },
+  },
+};
 </script>
 
 <style>
-
 </style>
