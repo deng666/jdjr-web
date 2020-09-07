@@ -8,7 +8,8 @@
         <div class="item" :style="{width: threeWidth}"></div>
       </div>
       <div id="myChart" style="width: 400px;height: 400px;"></div>
-      <div id="aaa" :style="{width: '600px', height: '700px',margin:'0 auto'}"></div>
+      <div id="aaa" :style="{width: '600px', height: '500px',margin:'0 auto'}"></div>
+      <div id="bbb" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
     </div>
   </div>
 </template>
@@ -34,7 +35,7 @@ export default {
           },
         },
         legend: {
-          data: ["邮件营销", "联盟广告", "视频广告"],
+          data: ["邮件营销", "联盟广告", "视频广告", "折线图"],
         },
         grid: {
           left: "3%",
@@ -57,9 +58,9 @@ export default {
           {
             name: "折线图",
             type: "line",
+            color: "red",
             symbol: "none",
             lineStyle: {
-              color: "#F5E542",
               width: 3,
             },
             data: [470, 540, 495, 522, 570, 890, 930],
@@ -132,6 +133,34 @@ export default {
           },
         ],
       },
+      optionTwo: {
+        title: {
+          left: "left",
+        },
+        tooltip: {
+          trigger: "item",
+          formatter: "{a} <br/>{b} : {c} ({d}%)",
+        },
+        legend: {
+          left: "center",
+          top: "bottom",
+          data: ["rose1", "rose2", "rose3"],
+        },
+        series: [
+          {
+            name: "面积模式",
+            type: "pie",
+            radius: [30, 110],
+            center: ["75%", "50%"],
+            roseType: "area",
+            data: [
+              { value: 10, name: "rose1" },
+              { value: 5, name: "rose2" },
+              { value: 15, name: "rose3" },
+            ],
+          },
+        ],
+      },
     };
   },
   components: {
@@ -151,8 +180,15 @@ export default {
   mounted() {
     this.init();
     this.drawLine();
+    this.second();
   },
   methods: {
+    second() {
+      // 基于准备好的dom，初始化echarts实例
+      let chartTwo = this.$echarts.init(document.getElementById("bbb"));
+      // 绘制图表
+      chartTwo.setOption(this.optionTwo);
+    },
     drawLine() {
       // 基于准备好的dom，初始化echarts实例
       let chart = this.$echarts.init(document.getElementById("aaa"));
