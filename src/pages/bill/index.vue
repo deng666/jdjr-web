@@ -1,16 +1,15 @@
 <template>
   <div>
     <header-title headerTitle="进度条"></header-title>
-    <div class="content">
-      <div class="row">
-        <div class="item" :style="{width: firstWidth}"></div>
-        <div class="item" :style="{width: secodeWidth}"></div>
-        <div class="item" :style="{width: threeWidth}"></div>
-      </div>
-      <div id="myChart" style="width: 400px;height: 400px;"></div>
-      <div id="aaa" :style="{width: '600px', height: '500px',margin:'0 auto'}"></div>
-      <div id="bbb" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
+    <div class="row">
+      <div class="item" :style="{width: firstWidth}"></div>
+      <div class="item" :style="{width: secodeWidth}"></div>
+      <div class="item" :style="{width: threeWidth}"></div>
     </div>
+    <div id="myChart" style="width: 400px;height: 400px;"></div>
+    <div id="aaa" :style="{width: '600px', height: '500px',margin:'0 auto'}"></div>
+    <div id="bbb" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
+    <div id="ccc" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
   </div>
 </template>
 
@@ -63,7 +62,7 @@ export default {
             lineStyle: {
               width: 3,
             },
-            data: [470, 540, 495, 522, 570, 890, 930],
+            data: [40, 20, 15, 22, 70, 40, 20],
           },
           {
             name: "邮件营销",
@@ -85,7 +84,7 @@ export default {
                 ),
               },
             },
-            data: [100, 130, 101, 134, 90, 230, 210],
+            data: [10, 13, 10, 13, 9, 20, 10],
           },
           {
             name: "联盟广告",
@@ -107,7 +106,7 @@ export default {
             //     ),
             //   },
             // },
-            data: [220, 180, 190, 234, 290, 330, 310],
+            data: [22, 80, 90, 24, 20, 30, 10],
           },
           {
             name: "视频广告",
@@ -129,7 +128,7 @@ export default {
                 ),
               },
             },
-            data: [150, 230, 204, 154, 190, 330, 410],
+            data: [10, 30, 4, 54, 90, 30, 10],
           },
         ],
       },
@@ -161,6 +160,80 @@ export default {
           },
         ],
       },
+      optionThree: {
+        title: {
+          text: "折线图堆叠",
+        },
+        tooltip: {
+          trigger: "axis",
+          triggerOn: "click", //触发方式
+          enterable: true, // 鼠标可移入tooltip中
+          formatter: function (params) {
+            console.log("params:", params);
+            // return `<span onclick="myClick">同比</span>`; // 记得要加css样式pointer-events: all
+            return params[0].name;
+          },
+        },
+        // tooltip: {
+        //   // trigger 设置触发类型，默认数据触发，可选值：'item' ¦ 'axis'
+        //   trigger: "item",
+        //   // showDelay: 20, // 显示延迟，添加显示延迟可以避免频繁切换，单位ms
+        //   // hideDelay: 20, // 隐藏延迟，单位ms
+        //   backgroundColor: "rgba(255,0,0,0.7)", // 提示框背景颜色
+        //   textStyle: {
+        //     fontSize: "16px",
+        //     color: "#000", // 设置文本颜色 默认#FFF
+        //   },
+        //   formatter: function (params) {
+        //     console.log("params:", params);
+        //     return (
+        //       params.name +
+        //       "<br>" +
+        //       "2020/2:" +
+        //       params.value +
+        //       "<br>" +
+        //       "2019/2:" +
+        //       params.value
+        //     );
+        //   },
+        //   // formatter设置提示框显示内容
+        //   // {a}指series.name  {b}指series.data的name
+        //   // {c}指series.data的value  {d}%指这一部分占总数的百分比
+        //   // formatter: "/{b} <br/>{c}个 ({d}%)",
+        // },
+        xAxis: {
+          type: "category",
+          boundaryGap: false,
+          data: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
+        },
+        yAxis: {
+          type: "value",
+        },
+        series: [
+          {
+            name: "2020",
+            type: "line",
+            stack: "总量",
+            smooth: true,
+            // symbol: "none",
+            markLine: {
+              data: [{ type: "average", name: "平均值" }],
+            },
+            data: [120, 132, 101, 134, 90, 230, 210],
+          },
+          {
+            name: "2019",
+            type: "line",
+            stack: "总量",
+            smooth: true,
+            // symbol: "none",
+            markLine: {
+              data: [{ type: "average", name: "平均值" }],
+            },
+            data: [220, 182, 191, 234, 290, 330, 310],
+          },
+        ],
+      },
     };
   },
   components: {
@@ -176,13 +249,23 @@ export default {
     threeWidth() {
       return 80 + "px";
     },
+    myClick() {
+      console.log("我是computed");
+    },
   },
   mounted() {
     this.init();
     this.drawLine();
     this.second();
+    this.three();
   },
   methods: {
+    three() {
+      // 基于准备好的dom，初始化echarts实例
+      let chart = this.$echarts.init(document.getElementById("ccc"));
+      // 绘制图表
+      chart.setOption(this.optionThree);
+    },
     second() {
       // 基于准备好的dom，初始化echarts实例
       let chartTwo = this.$echarts.init(document.getElementById("bbb"));
