@@ -2,7 +2,18 @@
   <div>
     <header-title headerTitle="订单"></header-title>
     <div class="content">
-      <div id="myChart" :style="{width: '600px', height: '700px',margin:'0 auto'}"></div>
+      <div>
+        <div id="myChart"
+             :style="{width: '600px', height: '700px',margin:'0 auto'}"></div>
+        <div>
+        </div>
+        <div>
+          <div id="myChartaaa"
+               :style="{width: '600px', height: '700px',margin:'0 auto'}"></div>
+        </div>
+
+      </div>
+
       <footer-bar />
     </div>
   </div>
@@ -11,9 +22,80 @@
 <script>
 import HeaderTitle from "@/common/headerTitle/index";
 import FooterBar from "@/common/footerBar/index";
+var originaldata = [{
+  "value": 60,
+  "name": "移动端",
+  "children": [{
+    "value": 40,
+    "name": "苹果"
+  }, {
+    "value": 10,
+    "name": "安卓"
+  }, {
+    "value": 10,
+    "name": "塞班"
+  }]
+}, {
+  "value": 40,
+  "name": "PC"
+}, {
+  "value": 40,
+  "name": "平板"
+}];
+var color0 = ['#4A6DBF', '#15B3BC', '#FD4440'];
+var data0 = [];
+for (var i = 0; i < originaldata.length; i++) {
+  var obj = originaldata[i];
+  data0.push({
+    value: obj.value,
+    name: obj.name,
+    itemStyle: {
+      color: color0[i]
+    },
+    labelLine: {
+      length: 40,
+      length2: 10
+    }
+  });
+}
+
+var color1 = ['rgba(244,156,31,0.3)', 'rgba(94,140,208,0.3)', 'rgba(198,52,157,0.3)'];
+var data1 = [];
+for (var i = 0; i < originaldata.length; i++) {
+  var obj = originaldata[i];
+  var kids = obj.children;
+  if (typeof (kids) === 'undefined') {
+    data1.push({
+      value: obj.value,
+      name: obj.name,
+      itemStyle: {
+        color: 'transparent'
+      }
+    });
+  } else {
+    for (var k = 0; k < kids.length; k++) {
+      var kid = kids[k];
+      data1.push({
+        value: kid.value,
+        name: kid.name,
+        itemStyle: {
+          color: color1[k]
+        },
+        label: {
+          normal: {
+            position: 'outside',
+            formatter: '{b} {d}% ',
+            color: '#909090'
+          }
+        }
+      });
+    }
+  }
+  // alert(k);
+}
 export default {
   name: "order",
-  data() {
+  data () {
     return {
       option: {
         color: ["#7daeff"],
@@ -23,18 +105,16 @@ export default {
         },
         tooltip: {
           trigger: "axis",
+          formatter: function (params) {
+            let res
+            for (var i = 0; i < params.length; i++) {
+              res = params[i].value
+            }
+            return res;
+          }
         },
         legend: {
           data: ["蒸发量"],
-        },
-        toolbox: {
-          show: true,
-          feature: {
-            dataView: { show: true, readOnly: false },
-            magicType: { show: true, type: ["line", "bar"] },
-            restore: { show: true },
-            saveAsImage: { show: true },
-          },
         },
         calculable: true,
         xAxis: [
@@ -45,16 +125,10 @@ export default {
               "1月",
               "2月",
               "3月",
-              "4月",
-              "5月",
-              "6月",
-              "7月",
-              "8月",
-              "9月",
+              "4月"
             ],
             axisLabel: {
               interval: 0,
-              rotate: 45,
             },
           },
         ],
@@ -73,36 +147,68 @@ export default {
         label: {
           show: true,
           position: "top",
-          color: "#7daeff",
+          color: "red",
         },
         series: [
           {
             name: "蒸发量",
             type: "bar",
-            barWidth: 30, // 柱图宽度
+            barWidth: 40, // 柱图宽度
             barGap: "-50%", // 柱图间距
-            data: [687, 236, 3, 650, 800, 310, 260, 162.2, 698],
+            data: [687, 236, 650, 800],
           },
         ],
       },
-    };
+      aaaaaa: {
+        backgroundColor: '#161823',
+        series: [{
+          name: '访问来源',
+          type: 'pie',
+          animation: false,
+          radius: ['47%', '74%'],
+          label: {
+            normal: {
+              position: 'outside',
+              formatter: '{b} {d}% ',
+              color: '#fff'
+            }
+          },
+          labelLine: {
+            normal: {
+              show: true
+            },
+          },
+          data: data0
+        },
+        {
+          name: '访问来源',
+          type: 'pie',
+          radius: ['74%', '84%'],
+          animation: false,
+          data: data1
+        }
+        ],
+      }
+    }
   },
   components: {
     HeaderTitle,
     FooterBar,
   },
-  mounted() {
+  mounted () {
     this.drawLine();
   },
   methods: {
     // tranNumber (num) {
 
     // },
-    drawLine() {
+    drawLine () {
       // 基于准备好的dom，初始化echarts实例
       let myChart = this.$echarts.init(document.getElementById("myChart"));
+      let myChartaaa = this.$echarts.init(document.getElementById("myChart"));
       // 绘制图表
       myChart.setOption(this.option);
+      myChartaaa.setOption(this.aaaaaa)
     },
   },
 };
