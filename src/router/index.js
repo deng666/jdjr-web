@@ -36,5 +36,13 @@ export default new Router({
     path: '/bill',
     name: 'bill',
     component: resolve => require(['@/pages/bill'], resolve)
+  }, {
+    path: '/taibao',
+    name: 'taibao',
+    component: resolve => require(['@/pages/taibao'], resolve)
+  }, {
+    path: '/ceshi',
+    name: 'ceshi',
+    component: resolve => require(['@/pages/ceshi'], resolve)
   }]
 })

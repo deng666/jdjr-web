@@ -2,14 +2,21 @@
   <div>
     <header-title headerTitle="进度条"></header-title>
     <div class="row">
-      <div class="item" :style="{width: firstWidth}"></div>
-      <div class="item" :style="{width: secodeWidth}"></div>
-      <div class="item" :style="{width: threeWidth}"></div>
+      <div class="item"
+           :style="{width: firstWidth}"></div>
+      <div class="item"
+           :style="{width: secodeWidth}"></div>
+      <div class="item"
+           :style="{width: threeWidth}"></div>
     </div>
-    <div id="myChart" style="width: 400px;height: 400px;"></div>
-    <div id="aaa" :style="{width: '600px', height: '500px',margin:'0 auto'}"></div>
-    <div id="bbb" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
-    <div id="ccc" :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
+    <div id="myChart"
+         style="width: 400px;height: 400px;"></div>
+    <div id="aaa"
+         :style="{width: '600px', height: '500px',margin:'0 auto'}"></div>
+    <div id="bbb"
+         :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
+    <div id="ccc"
+         :style="{width: '600px', height: '300px',margin:'0 auto'}"></div>
   </div>
 </template>
 
@@ -22,7 +29,7 @@ require("echarts/lib/component/tooltip");
 require("echarts/lib/component/title");
 import HeaderTitle from "@/common/headerTitle/index";
 export default {
-  data() {
+  data () {
     return {
       line1: 60,
       option: {
@@ -240,45 +247,45 @@ export default {
     HeaderTitle,
   },
   computed: {
-    firstWidth() {
+    firstWidth () {
       return this.line1 + "px";
     },
-    secodeWidth() {
+    secodeWidth () {
       return 180 + "px";
     },
-    threeWidth() {
+    threeWidth () {
       return 80 + "px";
     },
-    myClick() {
+    myClick () {
       console.log("我是computed");
     },
   },
-  mounted() {
+  mounted () {
     this.init();
     this.drawLine();
     this.second();
     this.three();
   },
   methods: {
-    three() {
+    three () {
       // 基于准备好的dom，初始化echarts实例
       let chart = this.$echarts.init(document.getElementById("ccc"));
       // 绘制图表
       chart.setOption(this.optionThree);
     },
-    second() {
+    second () {
       // 基于准备好的dom，初始化echarts实例
       let chartTwo = this.$echarts.init(document.getElementById("bbb"));
       // 绘制图表
       chartTwo.setOption(this.optionTwo);
     },
-    drawLine() {
+    drawLine () {
       // 基于准备好的dom，初始化echarts实例
       let chart = this.$echarts.init(document.getElementById("aaa"));
       // 绘制图表
       chart.setOption(this.option);
     },
-    init() {
+    init () {
       let pieChart = echarts.init(document.getElementById("myChart"));
 
       // 初始化数据
