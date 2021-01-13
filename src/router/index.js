@@ -44,5 +44,9 @@ export default new Router({
     path: '/ceshi',
     name: 'ceshi',
     component: resolve => require(['@/pages/ceshi'], resolve)
-  }]
+  }, {
+    path: '/bar',
+    name: 'bar',
+    component: resolve => require(['@/pages/bar'], resolve)
+  }, ]
 })

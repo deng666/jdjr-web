@@ -5,7 +5,7 @@
       <div v-for="(item, index) in list"
            :key="index">
         {{item.text}}
-        <div :id="'chart_cl_detail_evaluate'+index"
+        <div :id="'chart'+index"
              :style="{width: '600px', height: '700px',margin:'0 auto'}"></div>
       </div>
     </div>
@@ -35,7 +35,8 @@ export default {
   methods: {
     drawLine () {
       for (let i = 0; i < this.list.length; i++) {
-        let myChart = this.$echarts.init(document.getElementById('chart_cl_detail_evaluate' + i))
+        let myChart = this.$echarts.init(document.getElementById('chart' + i))
+        console.log(myChart._dom.id, '222222')
         let option = {
           color: ["#7daeff"],
           title: {
@@ -74,29 +75,58 @@ export default {
           yAxis: [
             {
               type: "value",
-              // name: '水量',
-              min: 0,
-              max: 900,
-              interval: 300,
               axisLabel: {
                 formatter: "{value}",
               },
             },
           ],
-          label: {
-            show: true,
-            position: "top",
-            color: "red",
-          },
-          series: [
-            {
-              name: "蒸发量",
-              type: "bar",
-              barWidth: 40, // 柱图宽度
-              barGap: "-50%", // 柱图间距
-              data: [687, 236, 650, 800],
+          series: [{
+            label: {
+              show: true,
+              position: "top",
+              color: "red",
+              formatter: function (params) {
+                let num = 0
+                if (myChart._dom.id === 'chart0') {
+                  num = `${params.value}%`
+                } else {
+                  num = params.value
+                }
+                return num
+              }
             },
-          ],
+            data: [{
+              value: 30,
+              tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                  let num = 0
+                  if (myChart._dom.id === 'chart0') {
+                    num = `${params.value}%`
+                  } else {
+                    num = params.value
+                  }
+                  return num
+                }
+              }
+            },
+            {
+              value: 20,
+              tooltip: {
+                trigger: 'item',
+                formatter: function (params) {
+                  let num = 0
+                  if (myChart._dom.id === 'chart0') {
+                    num = `${params.value}%`
+                  } else {
+                    num = params.value
+                  }
+                  return num
+                }
+              }
+            }],
+            type: 'bar',
+          }]
         }
         myChart.setOption(option);
       }
